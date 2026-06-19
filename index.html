@@ -28,22 +28,31 @@
     <section>
         <h2>Add Transaction</h2>
 
-        <form>
-            <label>Description</label>
-            <input type="text">
+        <form id="transactionForm">
 
-            <label>Amount</label>
-            <input type="number">
+            <label for="description">Description</label>
+            <input id="description" type="text">
+            <small id="descriptionError"></small>
 
-            <label>Category</label>
-            <select>
-                <option>Food</option>
-                <option>Books</option>
-                <option>Transport</option>
-                <option>Entertainment</option>
-                <option>Fees</option>
-                <option>Other</option>
-            </select>
+            <label for="amount">Amount</label>
+            <input id="amount" type="text">
+            <small id="amountError"></small>
+
+            <label for="category">Category</label>
+            <input id="category" type="text">
+            <small id="categoryError"></small>
+
+            <label for="date">Date</label>
+            <input id="date" type="date">
+            <small id="dateError"></small>
+
+            <button type="submit">Add Transaction</button>
+
+    </form>
+
+    <p id="statusMessage"></p>
+
+</section>
 
             <label>Date</label>
             <input type="date">

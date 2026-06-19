@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Regex Tests</title>
+</head>
+<body>
+
+<h2>Regex Tests</h2>
+
+<script>
+
+const amountRegex = /^(0|[1-9]\d*)(\.\d{1,2})?$/;
+
+console.assert(amountRegex.test("12.50"));
+console.assert(amountRegex.test("100"));
+console.assert(!amountRegex.test("12.555"));
+
+document.write("Tests Passed");
+
+</script>
+
+</body>
+</html>

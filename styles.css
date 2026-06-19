@@ -50,3 +50,14 @@ button {
 button:hover {
     opacity: 0.9;
 }
+
+small {
+    color: red;
+    display: block;
+    margin-bottom: 10px;
+}
+
+#statusMessage {
+    color: green;
+    margin-top: 10px;
+}
