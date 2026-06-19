@@ -2,62 +2,144 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: Arial, sans-serif;
 }
 
 body {
-    font-family: Arial, sans-serif;
-    padding: 1rem;
+    background: #f5f7fb;
+    color: #222;
+    line-height: 1.5;
 }
 
+/* HEADER */
 header {
+    background: #2c3e50;
+    color: white;
+    padding: 20px;
     text-align: center;
-    margin-bottom: 20px;
 }
 
-section {
-    margin-bottom: 20px;
+/* MAIN LAYOUT */
+main {
+    max-width: 1000px;
+    margin: auto;
     padding: 15px;
-    border: 1px solid #ddd;
 }
 
-form {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
+/* SECTIONS */
+section {
+    background: white;
+    padding: 15px;
+    margin-bottom: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
 }
 
-input,
-select,
-button {
-    padding: 8px;
-}
-
-table {
-    width: 100%;
-    border-collapse: collapse;
-}
-
-th,
-td {
-    border: 1px solid #ddd;
-    padding: 8px;
-}
-
-button {
-    cursor: pointer;
-}
-
-button:hover {
-    opacity: 0.9;
-}
-
-small {
-    color: red;
-    display: block;
+/* HEADINGS */
+h2 {
     margin-bottom: 10px;
 }
 
-#statusMessage {
-    color: green;
+/* INPUTS */
+input {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+/* BUTTONS */
+button {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    background: #3498db;
+    color: white;
+    transition: 0.2s;
+    margin: 3px;
+}
+
+button:hover {
+    background: #2980b9;
+    transform: scale(1.02);
+}
+
+/* TABLE */
+table {
+    width: 100%;
+    border-collapse: collapse;
     margin-top: 10px;
+}
+
+th, td {
+    border-bottom: 1px solid #ddd;
+    padding: 10px;
+    text-align: left;
+}
+
+/* ERROR TEXT */
+small {
+    color: red;
+    display: block;
+    margin-top: -5px;
+    margin-bottom: 8px;
+}
+
+/* STATUS MESSAGE */
+#statusMessage {
+    margin-top: 10px;
+    color: green;
+}
+
+/* DASHBOARD TEXT */
+#budgetMessage {
+    font-weight: bold;
+}
+
+/* ANIMATION (simple fade in) */
+section {
+    animation: fadeIn 0.3s ease-in;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(5px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* RESPONSIVE DESIGN */
+
+/* TABLET */
+@media (max-width: 768px) {
+    main {
+        padding: 10px;
+    }
+
+    button {
+        width: 100%;
+        margin-bottom: 5px;
+    }
+}
+
+/* MOBILE */
+@media (max-width: 480px) {
+    header {
+        font-size: 18px;
+    }
+
+    section {
+        padding: 10px;
+    }
+
+    th, td {
+        font-size: 14px;
+    }
 }
