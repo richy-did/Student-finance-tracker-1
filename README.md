@@ -14,6 +14,9 @@ It allows users to:
 
 ---
 
+#Youtube video
+https://youtu.be/CwIt81h_VCQ
+
 ## Features
 
 ### Transactions
@@ -97,6 +100,8 @@ All data is saved in browser localStorage:
 finance_transactions
 
 ---
+
+
 
 ## Author
 Munezero jean pierre
