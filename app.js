@@ -1,5 +1,6 @@
 let budgetCap = 0;
-const transactions = [];
+const STORAGE_KEY = "finance_transactions";
+let transactions = JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
 
 function renderTransactions(data = transactions) {
 
@@ -21,6 +22,10 @@ function renderTransactions(data = transactions) {
 
         tableBody.appendChild(row);
     });
+}
+
+function saveTransactions() {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(transactions));
 }
 
 
@@ -218,6 +223,8 @@ form.addEventListener("submit", function(event) {
 
     transactions.push(transaction);
 
+    saveTransactions();
+
     renderTransactions();
     updateDashboard();
 
@@ -230,3 +237,6 @@ form.addEventListener("submit", function(event) {
 
 document.getElementById("budgetCap")
 .addEventListener("input", updateDashboard);
+
+renderTransactions();
+updateDashboard();
