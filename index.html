@@ -26,6 +26,21 @@
     </section>
 
     <section>
+        <h2>Search Transactions</h2>
+
+        <input type="text" id="searchInput" placeholder="Enter regex pattern">
+
+        <label>
+            <input type="checkbox" id="caseInsensitive" checked>
+        Ignore Case
+        </label>
+
+        <button id="searchBtn">Search</button>
+
+        <p id="searchStatus"></p>
+    </section>
+
+    <section>
         <h2>Add Transaction</h2>
 
         <form id="transactionForm">
@@ -63,6 +78,9 @@
 
     <section>
         <h2>Transactions</h2>
+        <button id="sortDate">Sort Date</button>
+    <button id="sortAmount">Sort Amount</button>
+    <button id="sortDescription">Sort Description</button>
 
         <table>
             <thead>
@@ -74,8 +92,7 @@
                 </tr>
             </thead>
 
-            <tbody>
-            </tbody>
+            <tbody id="transactionTableBody"></tbody>
         </table>
     </section>
 

@@ -1,4 +1,100 @@
-console.log("Student Finance Tracker Loaded");const form = document.getElementById("transactionForm");
+const transactions = [];
+
+function renderTransactions(data = transactions) {
+
+    const tableBody =
+        document.getElementById("transactionTableBody");
+
+    tableBody.innerHTML = "";
+
+    data.forEach(transaction => {
+
+        const row = document.createElement("tr");
+
+        row.innerHTML = `
+            <td>${transaction.description}</td>
+            <td>${transaction.amount}</td>
+            <td>${transaction.category}</td>
+            <td>${transaction.date}</td>
+        `;
+
+        tableBody.appendChild(row);
+    });
+}
+
+document.getElementById("sortAmount")
+.addEventListener("click", () => {
+
+    transactions.sort((a, b) => a.amount - b.amount);
+
+    renderTransactions();
+});
+
+document.getElementById("sortDescription")
+.addEventListener("click", () => {
+
+    transactions.sort((a, b) =>
+        a.description.localeCompare(b.description)
+    );
+
+    renderTransactions();
+});
+
+document.getElementById("sortDate")
+.addEventListener("click", () => {
+
+    transactions.sort((a, b) =>
+        new Date(a.date) - new Date(b.date)
+    );
+
+    renderTransactions();
+});
+
+function compileRegex(pattern, flags = "i") {
+
+    try {
+        return new RegExp(pattern, flags);
+    }
+
+    catch {
+        return null;
+    }
+}
+
+document.getElementById("searchBtn")
+.addEventListener("click", () => {
+
+    const pattern =
+        document.getElementById("searchInput").value;
+
+    const ignoreCase =
+        document.getElementById("caseInsensitive").checked;
+
+    const regex =
+        compileRegex(pattern, ignoreCase ? "i" : "");
+
+    if (!regex) {
+
+        document.getElementById("searchStatus")
+            .textContent = "Invalid regex pattern";
+
+        return;
+    }
+
+    const filtered = transactions.filter(transaction =>
+        regex.test(transaction.description)
+    );
+
+    renderTransactions(filtered);
+
+    document.getElementById("searchStatus")
+        .textContent =
+        `${filtered.length} result(s) found`;
+});
+
+console.log("Student Finance Tracker Loaded");
+
+const form = document.getElementById("transactionForm");
 
 form.addEventListener("submit", function(event) {
 
@@ -43,9 +139,24 @@ form.addEventListener("submit", function(event) {
     }
 
     if (valid) {
-        document.getElementById("statusMessage").textContent =
-            "Transaction added successfully";
 
-        form.reset();
-    }
+    const transaction = {
+        id: Date.now(),
+        description,
+        amount: Number(amount),
+        category,
+        date,
+        createdAt: new Date().toISOString(),
+        updatedAt: new Date().toISOString()
+    };
+
+    transactions.push(transaction);
+
+    renderTransactions();
+
+    document.getElementById("statusMessage").textContent =
+        "Transaction added successfully";
+
+    form.reset();
+}
 });
