@@ -1,3 +1,4 @@
+let budgetCap = 0;
 const transactions = [];
 
 function renderTransactions(data = transactions) {
@@ -22,6 +23,61 @@ function renderTransactions(data = transactions) {
     });
 }
 
+
+
+function updateDashboard() {
+
+    document.getElementById("totalTransactions")
+        .textContent = transactions.length;
+
+    const total = transactions.reduce(
+        (sum, t) => sum + t.amount,
+        0
+    );
+
+    document.getElementById("totalSpending")
+        .textContent = total.toFixed(2);
+
+    const categories = {};
+
+    transactions.forEach(t => {
+        categories[t.category] =
+            (categories[t.category] || 0) + 1;
+    });
+
+    let topCategory = "None";
+    let highest = 0;
+
+    for (let category in categories) {
+        if (categories[category] > highest) {
+            highest = categories[category];
+            topCategory = category;
+        }
+    }
+
+    document.getElementById("topCategory")
+        .textContent = topCategory;
+
+    const budgetMessage = document.getElementById("budgetMessage");
+
+if (budgetCap > 0) {
+
+    if (total > budgetCap) {
+
+        budgetMessage.textContent =
+            `Budget exceeded by $${(total - budgetCap).toFixed(2)}`;
+
+    } else {
+
+        budgetMessage.textContent =
+            `Remaining budget: $${(budgetCap - total).toFixed(2)}`;
+    }
+
+} else {
+    budgetMessage.textContent = "";
+
+}
+}
 document.getElementById("sortAmount")
 .addEventListener("click", () => {
 
@@ -92,6 +148,16 @@ document.getElementById("searchBtn")
         `${filtered.length} result(s) found`;
 });
 
+document.getElementById("setBudgetBtn")
+.addEventListener("click", () => {
+
+    budgetCap = Number(
+        document.getElementById("budgetCap").value
+    );
+
+    updateDashboard();
+});
+
 console.log("Student Finance Tracker Loaded");
 
 const form = document.getElementById("transactionForm");
@@ -153,6 +219,7 @@ form.addEventListener("submit", function(event) {
     transactions.push(transaction);
 
     renderTransactions();
+    updateDashboard();
 
     document.getElementById("statusMessage").textContent =
         "Transaction added successfully";
@@ -160,3 +227,6 @@ form.addEventListener("submit", function(event) {
     form.reset();
 }
 });
+
+document.getElementById("budgetCap")
+.addEventListener("input", updateDashboard);

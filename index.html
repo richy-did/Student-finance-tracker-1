@@ -19,10 +19,23 @@
         <p>Track student expenses and spending habits.</p>
     </section>
 
+    
     <section>
         <h2>Dashboard</h2>
-        <p>Total Transactions: 0</p>
-        <p>Total Spending: $0</p>
+
+        <p>Total Transactions:
+            <span id="totalTransactions">0</span>
+        </p>
+
+        <p>Total Spending:
+            $<span id="totalSpending">0</span>
+        </p>
+
+        <p>Top Category:
+            <span id="topCategory">None</span>
+        </p>
+
+        <p id="budgetMessage" aria-live="polite"></p>
     </section>
 
     <section>
@@ -69,12 +82,7 @@
 
 </section>
 
-            <label>Date</label>
-            <input type="date">
-
-            <button type="submit">Add</button>
-        </form>
-    </section>
+            
 
     <section>
         <h2>Transactions</h2>
@@ -98,9 +106,13 @@
 
     <section>
         <h2>Settings</h2>
+        <label for="budgetCap">Budget Cap</label>
+        <input type="number" id="budgetCap" placeholder="500">
+        <button id="setBudgetBtn" type="button">
+            Set Budget
+        </button>
 
-        <label>Budget Cap</label>
-        <input type="number">
+        
     </section>
 
 </main>
